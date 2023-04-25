@@ -1,3 +1,6 @@
+Peter Roland Jakobsgaard 
+Combutational biology studying cellular plasticity in NAFLD
+
 TODO: Add more to the title of your project here
 
 # LearningR:
