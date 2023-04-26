@@ -106,5 +106,18 @@ nhanes_small %>%
 nhanes_small %>%
   mutate(old = if_else(age > -30, "Yes", "No"))
 
+# Exercise 7.12
 
+# 1. BMI between 20 and 40 with diabetes
+nhanes_small %>%
+    # Format should follow: variable >= number or character
+    filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
+
+nhanes_modified <- nhanes_small %>%
+    mutate(
+        mean_arterial = ((2 * bp_dia_ave) + bp_sys_ave) / 3,
+        young_child = if_else(age < 6, "Yes", "No")
+    )
+
+nhanes_modified
 
