@@ -4,6 +4,8 @@ Working at SDU
 
 Added this sentence
 
+Adding a new sentence, yay!
+
 TODO: Add more to the title of your project here
 
 # LearningR:
