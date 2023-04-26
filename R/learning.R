@@ -110,30 +110,36 @@ nhanes_small %>%
 
 # 1. BMI between 20 and 40 with diabetes
 nhanes_small %>%
-    # Format should follow: variable >= number or character
-    filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
+  # Format should follow: variable >= number or character
+  filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
 
 nhanes_modified <- nhanes_small %>%
-    mutate(
-        mean_arterial = ((2 * bp_dia_ave) + bp_sys_ave) / 3,
-        young_child = if_else(age < 6, "Yes", "No")
-    )
+  mutate(
+    mean_arterial = ((2 * bp_dia_ave) + bp_sys_ave) / 3,
+    young_child = if_else(age < 6, "Yes", "No")
+  )
 
 nhanes_modified
 
 # Creating summart statistics
 
 nhanes_small %>%
-    summarise(max_bmi = max(bmi, na.rm = TRUE),
-              min_bmi = min(bmi, na.rm = TRUE))
+  summarise(
+    max_bmi = max(bmi, na.rm = TRUE),
+    min_bmi = min(bmi, na.rm = TRUE)
+  )
 
 nhanes_small %>%
-    filter(!is.na(diabetes)) %>%
-    group_by(diabetes) %>%
-    summarise(mean_age = mean(age),
-              mean_bmi = mean(bmi)) %>%
-    ungroup()
+  filter(!is.na(diabetes)) %>%
+  group_by(diabetes) %>%
+  summarise(
+    mean_age = mean(age),
+    mean_bmi = mean(bmi)
+  ) %>%
+  ungroup()
 
+# Saving data
+readr::write_csv(nhanes_small, here::here("data/nhanes_small.csv"))
 
 
 
