@@ -121,3 +121,20 @@ nhanes_modified <- nhanes_small %>%
 
 nhanes_modified
 
+# Creating summart statistics
+
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE),
+              min_bmi = min(bmi, na.rm = TRUE))
+
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>%
+    group_by(diabetes) %>%
+    summarise(mean_age = mean(age),
+              mean_bmi = mean(bmi)) %>%
+    ungroup()
+
+
+
+
+
