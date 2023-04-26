@@ -1,4 +1,4 @@
-Peter Roland blahblah Jakobsgaard 
+Peter Roland blahblah Blahblah 
 Combutational biology studying cellular plasticity in NAFLD
 Working at SDU
 
