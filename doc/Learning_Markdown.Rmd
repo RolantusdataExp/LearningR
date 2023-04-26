@@ -5,26 +5,31 @@ date: "4/26/2023"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+2 + 2
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r data_analysis}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(NHANES)
+nhanes_small <- read_csv(here::here("data/nhanes_small.csv"))
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+head(nhanes_small)
 ```
+## Table of results 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r mean-age-bmi-table}
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  group_by(diabetes, education) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  knitr::kable(caption = "Mean values of age and BMI for education and diabetis status.")
+```
