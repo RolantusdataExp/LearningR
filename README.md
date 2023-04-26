@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Peter Roland blahblah ticktok 
 
 Added this sentence
