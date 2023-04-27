@@ -147,6 +147,59 @@ nhanes_small %>%
   geom_bar()
 ```
 
-```{r}
+### plotting two variables 
 
+```{r}
+ggplot(nhanes_small, aes(x = bmi, y = bp_sys_ave)) +
+  geom_hex(na.rm = TRUE)
 ```
+
+```{r}
+# add smoothening line with confidence interval
+
+ggplot(nhanes_small, aes(x = bmi, y = bp_sys_ave)) +
+  geom_hex(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
+```
+
+```{r}
+# Two categorical/discrete variables
+# Note that we can pipe data into ggplot
+
+nhanes_small %>%
+  filter(!is.na(education), !is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes, fill = education)) +
+  geom_bar()
+```
+
+```{r}
+# "dodged" (side-by-side) bar plot
+nhanes_small %>%
+  filter(!is.na(education), !is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes, fill = education)) +
+  geom_bar(position = position_dodge())
+```
+
+### plotting continous and discrete variables
+
+```{r}
+# using mixed data
+
+nhanes_small %>%
+  filter(!is.na(diabetes), bmi <= 60) %>%
+  ggplot(aes(x = diabetes, y = bmi)) +
+  geom_violin(na.rm = TRUE)
+```
+
+## Exercise to make plots with one or two variables.
+
+```{r}
+library(NHANES)
+nhanes_exercise <- NHANES %>%
+  rename_with(snakecase::to_snake_case) %>%
+  rename(sex = gender)
+```
+
+
+
+
