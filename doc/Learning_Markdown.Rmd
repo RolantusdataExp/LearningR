@@ -35,7 +35,7 @@ nhanes_small %>%
 ```
 ## Prettier table 
 ```{r prettier table}
-#| echo: false
+#| echo: true
 nhanes_small %>%
   filter(!is.na(diabetes), !is.na(education)) %>%
   group_by(diabetes, education) %>%
@@ -50,16 +50,29 @@ nhanes_small %>%
     mean_bmi = round(mean_bmi, 1),
     # Task 2b.
     education = str_to_sentence(education)
-  ) %>% 
+  ) %>%
   rename(
     # Task 3.
     "Diabetes Status" = diabetes,
     "Education" = education,
     "Mean Age" = mean_age,
     "Mean BMI" = mean_bmi
-  ) %>% 
+  ) %>%
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
 ```
+
+## We insert a picture 
+
+```{r}
+
+```
+
+![Image by Dimitri Houtteman from Pixabay.](images/kitten.jpg)
+
+Cute kitten in @fig-kitten-attack!
+
+![Kitten attacking flowers!](images/kitten.jpg){#fig-kitten-attack width="50%" height="50%"}
+
 
 
 
